@@ -17,6 +17,6 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - name: Run Consumer Tests
-        run: mvn test -s ${{ github.workspace }}/settings.xml
+        run: mvn test -s ${{ github.workspace }}/settings.xml -Dstubrunner.serverId=github
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.STUB_TOKEN }}
