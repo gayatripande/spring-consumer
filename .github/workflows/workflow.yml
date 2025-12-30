@@ -14,8 +14,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           server-id: github
+          settings-path: ${{ github.workspace }}
 
       - name: Run Consumer Tests
-        run: mvn test -s $GITHUB_WORKSPACE/settings.xml
+        run: mvn test -s ${{ github.workspace }}/settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
