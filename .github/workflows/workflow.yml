@@ -1,0 +1,19 @@
+name: Consumer Contract Test
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read # Access to download the stubs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Run Tests
+        run: mvn test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
