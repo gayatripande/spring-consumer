@@ -17,6 +17,13 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - name: Run Consumer Tests
-        run: mvn test -s ${{ github.workspace }}/settings.xml -Dstubrunner.serverId=github
+          # We pass the serverId and force the credentials via system properties
+        run: >
+          mvn test 
+          -s ${{ github.workspace }}/settings.xml 
+          -Dstubrunner.serverId=github 
+          -Dstubrunner.username=gayatripande
+          -Dstubrunner.password=${{ secrets.STUB_TOKEN }}
         env:
+          # We provide it as an env var just in case settings.xml looks for it
           GITHUB_TOKEN: ${{ secrets.STUB_TOKEN }}
