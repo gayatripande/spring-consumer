@@ -1,0 +1,9 @@
+name: Remote Trigger from Producer
+on:
+  repository_dispatch:
+    types: [stubs-updated] # This matches the event name we'll send
+
+jobs:
+  run-tests:
+    uses: ./.github/workflows/workflow.yml
+    secrets: inherit
